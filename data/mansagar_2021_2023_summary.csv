@@ -1,0 +1,8 @@
+parameter,unit,site_1,site_2,site_3,site_4,context
+pH,unit,8.951,8.943,8.947,8.946,mean_2021_2023
+EC,mS/cm,2.3786,2.3750,2.3785,2.3781,mean_2021_2023
+DO,mg/L,3.40,3.42,3.39,3.41,reported_summary_2021_2023
+BOD,mg/L,5.7,,, ,site_1_summary
+COD,mg/L,62.5,,, ,site_1_summary
+Nitrate,mg/L,4.2,,, ,reported_summary_2021_2023
+Phosphate,mg/L,1.19,,, ,reported_summary_2021_2023
