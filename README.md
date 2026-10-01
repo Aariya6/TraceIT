@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # TraceIT — Aquatic Health Record
 
 > **The lake has measurements. It deserves a memory.**
