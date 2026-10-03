@@ -4,22 +4,17 @@ services:
     runtime: python
     rootDir: backend
     buildCommand: pip install -r requirements.txt
-    startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
       - key: DATABASE_URL
         sync: false
       - key: CORS_ORIGINS
         sync: false
-      - key: AUTH_SECRET
-        generateValue: true
-      - key: AUTH_TOKEN_HOURS
-        value: "72"
-      - key: ENVIRONMENT
-        value: production
   - type: web
-    name: traceit
+    name: traceit-web
     runtime: static
     rootDir: frontend
-    buildCommand: ""
     staticPublishPath: .
