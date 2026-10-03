@@ -1,1 +1,1 @@
-window.TRACEIT_API_URL = window.TRACEIT_API_URL || 'http://127.0.0.1:8000';
+window.TRACEIT_API_URL = window.TRACEIT_API_URL || 'https://traceit-api-1htx.onrender.com';
