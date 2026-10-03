@@ -22,6 +22,7 @@ def _normalize_url(url: str) -> str:
     return url
 
 database_url = _normalize_url(settings.database_url)
+print("DB target host:", database_url.rsplit("@", 1)[-1].split("/")[0] if "@" in database_url else database_url.split(":")[0], flush=True)
 is_sqlite = database_url.startswith("sqlite")
 connect_args = {"check_same_thread": False} if is_sqlite else {}
 engine = create_engine(database_url, connect_args=connect_args, pool_pre_ping=True, future=True)
