@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel, Field, EmailStr
-class SignupIn(BaseModel): name:str=Field(min_length=2,max_length=100); email:EmailStr; password:str=Field(min_length=10,max_length=128)
+class SignupIn(BaseModel): name:str=Field(min_length=2,max_length=100); email:EmailStr; password:str=Field(min_length=8,max_length=128)
 class LoginIn(BaseModel): email:EmailStr; password:str=Field(min_length=1,max_length=128)
 class ObservationIn(BaseModel):
     water_body_id:int; observed_at:datetime; source:str=Field(min_length=2,max_length=80); note:str=Field(default='',max_length=2000); site_code:str=Field(default='CITIZEN',max_length=32); lat:float=Field(ge=-90,le=90); lon:float=Field(ge=-180,le=180); temperature_c:float|None=None; ph:float|None=Field(default=None,ge=0,le=14); tds_mg_l:float|None=Field(default=None,ge=0); do_mg_l:float|None=Field(default=None,ge=0); bod_mg_l:float|None=Field(default=None,ge=0); cod_mg_l:float|None=Field(default=None,ge=0); nitrate_mg_l:float|None=Field(default=None,ge=0); phosphate_mg_l:float|None=Field(default=None,ge=0); conductivity_us_cm:float|None=Field(default=None,ge=0); biodiversity_signal:float=Field(default=0,ge=0,le=1); human_signal:float=Field(default=0,ge=0,le=1); image_signal:float=Field(default=0,ge=0,le=1); quality_score:float=Field(default=.9,ge=0,le=1)
