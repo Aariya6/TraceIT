@@ -1,4 +1,5 @@
-from urllib.parse import quote, unquote
+import socket
+from urllib.parse import quote, unquote, urlsplit
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 from .config import settings
@@ -22,6 +23,13 @@ def _normalize_url(url: str) -> str:
     return url
 
 database_url = _normalize_url(settings.database_url)
+if database_url.startswith("postgresql"):
+    _host = urlsplit(database_url).hostname
+    try:
+        socket.getaddrinfo(_host, None)
+    except OSError:
+        print(f"WARNING: database host {_host} cannot be resolved; falling back to SQLite", flush=True)
+        database_url = "sqlite:///./traceit.db"
 print("DB target host:", database_url.rsplit("@", 1)[-1].split("/")[0] if "@" in database_url else database_url.split(":")[0], flush=True)
 is_sqlite = database_url.startswith("sqlite")
 connect_args = {"check_same_thread": False} if is_sqlite else {}
